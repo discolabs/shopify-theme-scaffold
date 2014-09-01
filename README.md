@@ -36,27 +36,30 @@ Subsequent builds of your theme that alter files in the `/theme` directory will 
 
 Here's a breakdown of the top-level directories that come with this scaffold by default.
 
-### Assets Directory (`/assets`)
+#### Assets Directory (`/assets`)
 Add any static assets that don't require preprocessing here - for example images, font files, third-party Javascript libraries.
 Unlike Shopify's `/assets` directory, you can nest your files here in subdirectories.
 Just be aware that the directory structure is flattened in the build process, so files with the same name will conflict.
-This should be an issue if you use a simple nesting structure (for example, one subdirectory for each asset type).
+This shouldn't be an issue if you use a simple nesting structure (for example, one subdirectory for each asset type).
 
-### Layout Directory (`/layout`)
+#### Layout Directory (`/layout`)
 All `.liquid` files in this directory are copied directly into `/theme/layout` on compilation.
 
-### Locales Directory (`/locales`)
+#### Locales Directory (`/locales`)
 All `.json` files in this directory are copied directly into `/theme/locales` on compilation.
 
-### Settings Directory (`/settings`)
-This directory can hold a number of `.yml` files, which are compiled into a `settings.html` using the `grunt-shopify-theme-settings` Grunt plugin.
+#### Settings Directory (`/settings`)
+This directory can hold a number of `.yml` files, which are compiled into a `settings.html` using the Shopify Theme Settings Grunt plugin.
 See the [plugin home page](https://github.com/discolabs/grunt-shopify-theme-settings) for further usage instructions.
 
-### Snippets Directory (`/snippets`)
+#### Snippets Directory (`/snippets`)
 Liquid files in this directory are copied into `/theme/snippets`. Unlike the standard Shopify directory layout, you can use subdirectories here.
-When the theme is built, the Grunt tasks will generate filenames for your snippets based on directory path, so for example `/snippets/head/title.liquid` will be saved as `/theme/snippets/head-title.liquid`.
+When the theme is built, the Grunt task will generate filenames for your snippets based on directory path, so for example `/snippets/head/title.liquid` will be saved as `/theme/snippets/head-title.liquid`.
 
-### Templates Directory (`/templates`)
+When including these snippets in your template files, you'd use something like `{% include 'head-title' %}`.
+
+
+#### Templates Directory (`/templates`)
 All `.liquid` files in this directory are copied directly into `/theme/templates` on compilation. Customer templates in `/templates/customers` are copied to the corresponding directory.
 
 
