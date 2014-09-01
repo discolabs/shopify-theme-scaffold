@@ -95,7 +95,7 @@ module.exports = (grunt) ->
           'Gruntfile.js': 'Gruntfile.coffee'
 
     # Clean up generated files.
-    clean: ['dist', 'theme']
+    clean: ['dist', 'theme/assets', 'theme/config', 'theme/layout', 'theme/locales', 'theme/snippets', 'theme/templates']
 
     # Watch task.
     watch:

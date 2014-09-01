@@ -2,5 +2,10 @@
 node_modules
 bower_components
 dist
-theme
 config.yml
+/theme/assets
+/theme/config
+/theme/layout
+/theme/locales
+/theme/snippets
+/theme/templates

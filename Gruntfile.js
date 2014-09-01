@@ -83,7 +83,7 @@ module.exports = function(grunt) {
         }
       }
     },
-    clean: ['dist', 'theme'],
+    clean: ['dist', 'theme/assets', 'theme/config', 'theme/layout', 'theme/locales', 'theme/snippets', 'theme/templates'],
     watch: {
       less: {
         files: ['less/**/*.less'],
