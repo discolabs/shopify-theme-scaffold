@@ -10,7 +10,7 @@ module.exports = function(grunt) {
           compress: true
         },
         files: {
-          'theme/assets/style.min.css.liquid': 'less/styles.less'
+          'theme/assets/styles.min.css.liquid': 'less/styles.less'
         }
       }
     },
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
       templates: {
         expand: true,
         cwd: 'templates',
-        src: '*.liquid',
+        src: '**/**.liquid',
         dest: 'theme/templates'
       },
       locales: {
@@ -50,12 +50,19 @@ module.exports = function(grunt) {
         cwd: 'locales',
         src: '*.json',
         dest: 'theme/locales'
+      },
+      assets: {
+        expand: true,
+        flatten: true,
+        cwd: 'assets',
+        src: ['**/**.css', '**/**.js', '**/**.jpg', '**/**.png', '**/**.gif', '**/**.eot', '**/**.svg', '**/**.ttf', '**/**.woff'],
+        dest: 'theme/assets'
       }
     },
     compress: {
       zip: {
         options: {
-          archive: 'dist/your-theme.zip'
+          archive: 'dist/your-theme-name.zip'
         },
         files: [
           {
@@ -112,5 +119,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shopify-theme-settings');
   grunt.registerTask('build', ['less', 'shopify_theme_settings', 'copy']);
+  grunt.registerTask('dist', ['build', 'compress']);
   return grunt.registerTask('default', ['build', 'watch']);
 };

@@ -18,7 +18,7 @@ module.exports = (grunt) ->
         options:
           compress: true
         files:
-          'theme/assets/style.min.css.liquid': 'assets/less/styles.less'
+          'theme/assets/styles.min.css.liquid': 'less/styles.less'
 
     # Compilation of theme settings from YAML files.
     shopify_theme_settings:
@@ -44,13 +44,29 @@ module.exports = (grunt) ->
       templates:
         expand: true
         cwd: 'templates'
-        src: '*.liquid'
+        src: '**/**.liquid'
         dest: 'theme/templates'
       locales:
         expand: true
         cwd: 'locales'
         src: '*.json'
         dest: 'theme/locales'
+      assets:
+        expand: true
+        flatten: true
+        cwd: 'assets'
+        src: [
+          '**/**.css',
+          '**/**.js',
+          '**/**.jpg',
+          '**/**.png',
+          '**/**.gif',
+          '**/**.eot',
+          '**/**.svg',
+          '**/**.ttf',
+          '**/**.woff'
+        ]
+        dest: 'theme/assets'
 
     # Compression to a .zip for direct upload to Shopify Admin.
     compress:
@@ -60,7 +76,14 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: 'theme'
-          src: ['assets/**', 'config/**', 'layout/**', 'locales/**', 'snippets/**', 'templates/**']
+          src: [
+            'assets/**',
+            'config/**',
+            'layout/**',
+            'locales/**',
+            'snippets/**',
+            'templates/**'
+          ]
         ]
 
     # Compilation of this Gruntfile to plain .js for those who prefer it.
@@ -104,4 +127,5 @@ module.exports = (grunt) ->
 
   # Register tasks made available through the Gruntfile.
   grunt.registerTask 'build',   ['less', 'shopify_theme_settings', 'copy']
+  grunt.registerTask 'dist',    ['build', 'compress']
   grunt.registerTask 'default', ['build', 'watch']
