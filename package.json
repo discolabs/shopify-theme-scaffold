@@ -19,6 +19,7 @@
     "grunt-contrib-copy": "latest",
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-concat": "latest",
+    "grunt-contrib-clean": "latest",
     "grunt-contrib-compress": "latest",
     "grunt-shopify-theme-settings": "latest"
   }

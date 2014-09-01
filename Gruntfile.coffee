@@ -94,6 +94,9 @@ module.exports = (grunt) ->
         files:
           'Gruntfile.js': 'Gruntfile.coffee'
 
+    # Clean up generated files.
+    clean: ['dist', 'theme']
+
     # Watch task.
     watch:
       less:
@@ -117,6 +120,7 @@ module.exports = (grunt) ->
 
   # Load tasks made available through NPM.
   grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-compress'
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-copy'

@@ -83,6 +83,7 @@ module.exports = function(grunt) {
         }
       }
     },
+    clean: ['dist', 'theme'],
     watch: {
       less: {
         files: ['less/**/*.less'],
@@ -111,6 +112,7 @@ module.exports = function(grunt) {
     }
   });
   grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
