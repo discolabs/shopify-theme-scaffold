@@ -1,0 +1,25 @@
+{
+  "name": "your-theme-name",
+  "version": "0.0.1",
+  "homepage": "http://your-theme-homepage.com/",
+  "description": "A description of your theme.",
+  "keywords": "Shopify",
+  "author": "Your Name <your.name@example.com>",
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-sass": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-coffee": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-compress": "latest",
+    "grunt-shopify-theme-settings": "latest"
+  }
+}
