@@ -26,6 +26,17 @@ module.exports = (grunt) ->
         files:
           'theme/config/settings.html': 'settings/*.yml'
 
+    # Optimisation of image assets.
+    imagemin:
+      assets:
+        files: [{
+          expand: true,
+          flatten: true,
+          cwd: 'assets',
+          src: ['**/*.{png,jpg,jpeg,gif,svg}'],
+          dest: 'theme/assets'
+        }]
+
     # Copying of various theme files.
     copy:
       snippets:
@@ -55,17 +66,7 @@ module.exports = (grunt) ->
         expand: true
         flatten: true
         cwd: 'assets'
-        src: [
-          '**/**.css',
-          '**/**.js',
-          '**/**.jpg',
-          '**/**.png',
-          '**/**.gif',
-          '**/**.eot',
-          '**/**.svg',
-          '**/**.ttf',
-          '**/**.woff'
-        ]
+        src: ['**/*.{css,js,eot,ttf,woff}']
         dest: 'theme/assets'
 
     # Compression to a .zip for direct upload to Shopify Admin.
@@ -124,12 +125,14 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-compress'
   grunt.loadNpmTasks 'grunt-contrib-concat'
   grunt.loadNpmTasks 'grunt-contrib-copy'
+  grunt.loadNpmTasks 'grunt-contrib-imagemin'
   grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-watch'
+  grunt.loadNpmTasks 'grunt-newer'
   grunt.loadNpmTasks 'grunt-shopify-theme-settings'
 
   # Register tasks made available through the Gruntfile.
-  grunt.registerTask 'build',   ['less', 'shopify_theme_settings', 'copy']
+  grunt.registerTask 'build',   ['newer:less', 'newer:shopify_theme_settings', 'newer:imagemin', 'newer:copy']
   grunt.registerTask 'dist',    ['build', 'compress']
   grunt.registerTask 'default', ['build', 'watch']
