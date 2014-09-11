@@ -21,6 +21,19 @@ module.exports = function(grunt) {
         }
       }
     },
+    imagemin: {
+      assets: {
+        files: [
+          {
+            expand: true,
+            flatten: true,
+            cwd: 'assets',
+            src: ['**/*.{png,jpg,jpeg,gif,svg}'],
+            dest: 'theme/assets'
+          }
+        ]
+      }
+    },
     copy: {
       snippets: {
         expand: true,
@@ -55,7 +68,7 @@ module.exports = function(grunt) {
         expand: true,
         flatten: true,
         cwd: 'assets',
-        src: ['**/**.css', '**/**.js', '**/**.jpg', '**/**.png', '**/**.gif', '**/**.eot', '**/**.svg', '**/**.ttf', '**/**.woff'],
+        src: ['**/*.{css,js,eot,ttf,woff}'],
         dest: 'theme/assets'
       }
     },
@@ -116,11 +129,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-newer');
   grunt.loadNpmTasks('grunt-shopify-theme-settings');
-  grunt.registerTask('build', ['less', 'shopify_theme_settings', 'copy']);
+  grunt.registerTask('build', ['newer:less', 'newer:shopify_theme_settings', 'newer:imagemin', 'newer:copy']);
   grunt.registerTask('dist', ['build', 'compress']);
   return grunt.registerTask('default', ['build', 'watch']);
 };
