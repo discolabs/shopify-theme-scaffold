@@ -42,6 +42,8 @@ Unlike Shopify's `/assets` directory, you can nest your files here in subdirecto
 Just be aware that the directory structure is flattened in the build process, so files with the same name will conflict.
 This shouldn't be an issue if you use a simple nesting structure (for example, one subdirectory for each asset type).
 
+Image files (PNG, GIF, JPG and SVG) will be optimised using `grunt-contrib-imagemin` before being output to the `theme` directory.
+
 #### Layout Directory (`/layout`)
 All `.liquid` files in this directory are copied directly into `/theme/layout` on compilation.
 
