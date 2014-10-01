@@ -8,13 +8,18 @@ It ships with a few sample theme files, mostly empty, that demonstrate how the s
 You should be able to slot any number of existing themes or theme frameworks in.
 If you're starting off with a new theme, some of the open-source options you have are:
 
-- [Timber](http://shopify.github.io/Timber/), Shopify's new official theme framework;
-- [Skeleton Theme](https://github.com/Shopify/skeleton-theme), Shopify's older bare-bones theme framework;
-- [Bootstrapify](https://github.com/luciddesign/bootstrapify), an open-source Bootstrap-based framework by Lucid Design;
-- [Shopify Theme Framework](https://github.com/Cam/Shopify-Theme-Framework), an open-source Foundation-based framework by Cam Gould.
+- [Timber][], Shopify's new official theme framework;
+- [Skeleton Theme][], Shopify's older bare-bones theme framework;
+- [Bootstrapify][], an open-source Bootstrap-based framework by Lucid Design;
+- [Shopify Theme Framework][], an open-source Foundation-based framework by Cam Gould.
 
-You also have (shameless plug alert) a non-open-source, paid option in the form of [Bootstrap for Shopify](http://bootstrapforshopify.com).
+You also have (shameless plug alert) a non-open-source, paid option in the form of [Bootstrap for Shopify][].
 
+[Timber]: http://shopify.github.io/Timber/
+[Skeleton Theme]: https://github.com/Shopify/skeleton-theme
+[Bootstrapify]: https://github.com/luciddesign/bootstrapify
+[Shopify Theme Framework]: https://github.com/Cam/Shopify-Theme-Framework
+[Bootstrap for Shopify]: http://bootstrapforshopify.com/?utm_source=github&utm_medium=github&utm_content=readme&utm_campaign=shopify-theme-scaffold
 
 ## Dependencies & Setup
 You're going to need `nodejs` and `npm` in order to run:
@@ -44,25 +49,26 @@ This shouldn't be an issue if you use a simple nesting structure (for example, o
 
 Image files (PNG, GIF, JPG and SVG) will be optimised using `grunt-contrib-imagemin` before being output to the `theme` directory.
 
-#### Layout Directory (`/layout`)
-All `.liquid` files in this directory are copied directly into `/theme/layout` on compilation.
+#### Layout Directory
+All `.liquid` files in `/layout` are copied directly into `/theme/layout` on compilation.
 
-#### Locales Directory (`/locales`)
-All `.json` files in this directory are copied directly into `/theme/locales` on compilation.
+#### Locales Directory
+All `.json` files in `/locales` are copied directly into `/theme/locales` on compilation.
 
-#### Settings Directory (`/settings`)
-This directory can hold a number of `.yml` files, which are compiled into a `settings.html` using the Shopify Theme Settings Grunt plugin.
-See the [plugin home page](https://github.com/discolabs/grunt-shopify-theme-settings) for further usage instructions.
+#### Settings Directory
+The `/settings` directory can hold a number of `.yml` files, which are compiled into a `settings.html` using the Shopify Theme Settings Grunt plugin.
+See the [plugin home page][] for further usage instructions.
 
-#### Snippets Directory (`/snippets`)
-Liquid files in this directory are copied into `/theme/snippets`. Unlike the standard Shopify directory layout, you can use subdirectories here.
+[plugin home page]: https://github.com/discolabs/grunt-shopify-theme-settings
+
+#### Snippets Directory
+Liquid files in `/snippets` are copied into `/theme/snippets`. Unlike the standard Shopify directory layout, you can use subdirectories here.
 When the theme is built, the Grunt task will generate filenames for your snippets based on directory path, so for example `/snippets/head/title.liquid` will be saved as `/theme/snippets/head-title.liquid`.
 
 When including these snippets in your template files, you'd use something like `{% include 'head-title' %}`.
 
-
-#### Templates Directory (`/templates`)
-All `.liquid` files in this directory are copied directly into `/theme/templates` on compilation. Customer templates in `/templates/customers` are copied to the corresponding directory.
+#### Templates Directory
+All `.liquid` files in `/templates` are copied directly into `/theme/templates` on compilation. Customer templates in `/templates/customers` are copied to the corresponding directory.
 
 
 ## Contributions
