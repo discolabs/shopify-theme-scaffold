@@ -74,3 +74,22 @@ All `.liquid` files in `/templates` are copied directly into `/theme/templates` 
 ## Contributions
 
 Contributions are very much welcome! Just open a pull request, or raise an issue to discuss a proposed change.
+
+---
+
+#### About the Author
+
+[Gavin Ballard][] is a developer at [Disco][], specialising in Shopify development.
+Related projects:
+
+- [Shopify Theme Settings Grunt Plugin][]
+- [Cart.js][]
+- [Bootstrap for Shopify][]
+- [Mastering Shopify Themes][]
+
+[Shopify Theme Settings Grunt Plugin]: https://github.com/discolabs/grunt-shopify-theme-settings
+[Cart.js]: http://cartjs.org/?utm_source=github&utm_medium=readme&utm_campaign=shopify-theme-scaffold
+[Bootstrap for Shopify]: http://bootstrapforshopify.com/?utm_source=github&utm_medium=readme&utm_campaign=shopify-theme-scaffold
+[Mastering Shopify Themes]: http://gavinballard.com/mastering-shopify-themes/?utm_source=github&utm_medium=readme&utm_campaign=shopify-theme-scaffold
+[Gavin Ballard]: http://gavinballard.com/?utm_source=github&utm_medium=readme&utm_campaign=shopify-theme-scaffold
+[Disco]: http://discolabs.com/?utm_source=github&utm_medium=readme&utm_campaign=shopify-theme-scaffold
