@@ -20,6 +20,14 @@ module.exports = (grunt) ->
         files:
           'theme/assets/styles.min.css.liquid': 'less/styles.less'
 
+    # Compilation of SCSS files to compressed .css.liquid files.
+    sass:
+      theme:
+        options:
+          style: 'compressed'
+        files:
+          'theme/assets/styles.min.css.liquid': 'scss/styles.scss'
+
     # Compilation of theme settings from YAML files.
     shopify_theme_settings:
       settings:
@@ -118,12 +126,13 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-contrib-imagemin'
   grunt.loadNpmTasks 'grunt-contrib-less'
+  grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-newer'
   grunt.loadNpmTasks 'grunt-shopify-theme-settings'
 
   # Register tasks made available through the Gruntfile.
-  grunt.registerTask 'build',   ['newer:less', 'newer:shopify_theme_settings', 'newer:imagemin', 'newer:copy']
+  grunt.registerTask 'build',   ['newer:sass', 'newer:shopify_theme_settings', 'newer:imagemin', 'newer:copy']
   grunt.registerTask 'dist',    ['build', 'compress']
   grunt.registerTask 'default', ['build', 'watch']
