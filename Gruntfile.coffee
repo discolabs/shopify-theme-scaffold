@@ -87,14 +87,6 @@ module.exports = (grunt) ->
           ]
         ]
 
-    # Compilation of this Gruntfile to plain .js for those who prefer it.
-    coffee:
-      gruntfile:
-        options:
-          bare: true
-        files:
-          'Gruntfile.js': 'Gruntfile.coffee'
-
     # Clean up generated files.
     clean: ['dist', 'theme/assets', 'theme/config', 'theme/layout', 'theme/locales', 'theme/snippets', 'theme/templates']
 
@@ -120,7 +112,6 @@ module.exports = (grunt) ->
         tasks: ['copy:locales']
 
   # Load tasks made available through NPM.
-  grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-compress'
   grunt.loadNpmTasks 'grunt-contrib-concat'
