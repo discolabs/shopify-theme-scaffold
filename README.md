@@ -41,7 +41,7 @@ Subsequent builds of your theme that alter files in the `/theme` directory will 
 
 Here's a breakdown of the top-level directories that come with this scaffold by default.
 
-#### Assets Directory (`/assets`)
+#### Assets Directory
 Add any static assets that don't require preprocessing here - for example images, font files, third-party Javascript libraries.
 Unlike Shopify's `/assets` directory, you can nest your files here in subdirectories.
 Just be aware that the directory structure is flattened in the build process, so files with the same name will conflict.
@@ -56,10 +56,7 @@ All `.liquid` files in `/layout` are copied directly into `/theme/layout` on com
 All `.json` files in `/locales` are copied directly into `/theme/locales` on compilation.
 
 #### Settings Directory
-The `/settings` directory can hold a number of `.yml` files, which are compiled into a `settings.html` using the Shopify Theme Settings Grunt plugin.
-See the [plugin home page][] for further usage instructions.
-
-[plugin home page]: https://github.com/discolabs/grunt-shopify-theme-settings
+The `settings_schema.json` file will be copied from `/settings` to `/themes/config` on compilation.
 
 #### Snippets Directory
 Liquid files in `/snippets` are copied into `/theme/snippets`. Unlike the standard Shopify directory layout, you can use subdirectories here.
