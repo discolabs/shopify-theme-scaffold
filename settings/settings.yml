@@ -1,7 +1,0 @@
----
-about:
-  heading: Your Theme Name
-  content: |
-    <p>
-      This is an example settings.yml file that can be compiled using the grunt-shopify-theme-settings Grunt plugin.
-    </p>

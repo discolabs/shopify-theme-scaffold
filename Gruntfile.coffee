@@ -28,12 +28,6 @@ module.exports = (grunt) ->
         files:
           'theme/assets/styles.min.css.liquid': 'scss/styles.scss'
 
-    # Compilation of theme settings from YAML files.
-    shopify_theme_settings:
-      settings:
-        files:
-          'theme/config/settings.html': 'settings/*.yml'
-
     # Optimisation of image assets.
     imagemin:
       assets:
@@ -65,6 +59,11 @@ module.exports = (grunt) ->
         cwd: 'templates'
         src: '**/**.liquid'
         dest: 'theme/templates'
+      settings:
+        expand: true
+        cwd: 'settings'
+        src: 'settings_schema.json'
+        dest: 'theme/config'
       locales:
         expand: true
         cwd: 'locales'
@@ -104,8 +103,8 @@ module.exports = (grunt) ->
         files: ['less/**/*.less']
         tasks: ['less']
       settings:
-        files: ['settings/*.yml']
-        tasks: ['shopify_theme_settings']
+        files: ['settings/settings_schema.json']
+        tasks: ['copy:settings']
       snippets:
         files: ['snippets/**/**.liquid']
         tasks: ['copy:snippets']
@@ -130,9 +129,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-newer'
-  grunt.loadNpmTasks 'grunt-shopify-theme-settings'
 
   # Register tasks made available through the Gruntfile.
-  grunt.registerTask 'build',   ['newer:sass', 'newer:shopify_theme_settings', 'newer:imagemin', 'newer:copy']
+  grunt.registerTask 'build',   ['newer:sass', 'newer:imagemin', 'newer:copy']
   grunt.registerTask 'dist',    ['build', 'compress']
   grunt.registerTask 'default', ['build', 'watch']
