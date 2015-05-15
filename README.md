@@ -65,7 +65,8 @@ When the theme is built, the Grunt task will generate filenames for your snippet
 When including these snippets in your template files, you'd use something like `{% include 'head-title' %}`.
 
 #### Templates Directory
-All `.liquid` files in `/templates` are copied directly into `/theme/templates` on compilation. Customer templates in `/templates/customers` are copied to the corresponding directory.
+All `.liquid` files in `/templates` are copied directly into `/theme/templates` on compilation.
+Customer templates in `/templates/customers` are copied to `/theme/templates/customers`.
 
 
 ## Choosing a CSS Preprocessor
