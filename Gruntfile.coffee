@@ -73,7 +73,7 @@ module.exports = (grunt) ->
         expand: true
         flatten: true
         cwd: 'assets'
-        src: ['**/*.{css,js,eot,ttf,woff}']
+        src: ['**/*.{css,js,scss,css.liquid,js.liquid,scss.liquid,eot,ttf,woff}']
         dest: 'theme/assets'
 
     # Compression to a .zip for direct upload to Shopify Admin.
