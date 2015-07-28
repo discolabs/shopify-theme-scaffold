@@ -41,14 +41,6 @@ module.exports = (grunt) ->
 
     # Copying of various theme files.
     copy:
-      snippets:
-        expand: true
-        cwd: 'snippets'
-        src: '**/**.liquid'
-        dest: 'theme/snippets'
-        rename: (dest, src)->
-          path = require('path')
-          path.join(dest, src.replace(path.sep, '-'))
       layout:
         expand: true
         cwd: 'layout'
@@ -64,6 +56,11 @@ module.exports = (grunt) ->
         cwd: 'settings'
         src: 'settings_schema.json'
         dest: 'theme/config'
+      snippets:
+        expand: true
+        cwd: 'snippets'
+        src: '*.liquid'
+        dest: 'theme/snippets'
       locales:
         expand: true
         cwd: 'locales'

@@ -59,10 +59,7 @@ All `.json` files in `/locales` are copied directly into `/theme/locales` on com
 The `settings_schema.json` file will be copied from `/settings` to `/themes/config` on compilation.
 
 #### Snippets Directory
-Liquid files in `/snippets` are copied into `/theme/snippets`. Unlike the standard Shopify directory layout, you can use subdirectories here.
-When the theme is built, the Grunt task will generate filenames for your snippets based on directory path, so for example `/snippets/head/title.liquid` will be saved as `/theme/snippets/head-title.liquid`.
-
-When including these snippets in your template files, you'd use something like `{% include 'head-title' %}`.
+All `.liquid` files in `/templates` are copied directly into `/theme/templates` on compilation.
 
 #### Templates Directory
 All `.liquid` files in `/templates` are copied directly into `/theme/templates` on compilation.
