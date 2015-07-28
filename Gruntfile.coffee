@@ -111,6 +111,13 @@ module.exports = (grunt) ->
         files: ['locales/*.json']
         tasks: ['copy:locales']
 
+  # Production-specific configuration.
+  if isProduction
+    grunt.config 'newer'
+      options:
+        override: (detail, include) ->
+          include(true)
+
   # Load tasks made available through NPM.
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-compress'
@@ -124,9 +131,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-newer'
 
   # Register tasks made available through the Gruntfile.
-  if isProduction
-    grunt.registerTask 'build',   ['sass', 'imagemin', 'copy']
-  else
-    grunt.registerTask 'build',   ['newer:sass', 'newer:imagemin', 'newer:copy']
+  grunt.registerTask 'build',   ['newer:sass', 'newer:imagemin', 'newer:copy']
   grunt.registerTask 'dist',    ['build', 'compress']
   grunt.registerTask 'default', ['build', 'watch']
