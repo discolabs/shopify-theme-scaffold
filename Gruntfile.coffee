@@ -1,5 +1,8 @@
 module.exports = (grunt) ->
 
+  grunt.config 'env', grunt.option('env') || process.env.GRUNT_ENV || 'development'
+  isProduction = (grunt.config('env') == 'production')
+
   # Initialise the Grunt config.
   grunt.initConfig
     pkg: grunt.file.readJSON('package.json')
@@ -16,9 +19,10 @@ module.exports = (grunt) ->
     sass:
       theme:
         options:
-          style: 'compressed'
+          style: if isProduction then 'compressed' else 'expanded'
+          sourcemap: not isProduction
         files:
-          'theme/assets/styles.min.css.liquid': 'scss/styles.scss'
+          'theme/assets/styles.css.liquid': 'scss/styles.scss'
 
     # Optimisation of image assets.
     imagemin:
@@ -120,6 +124,9 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-newer'
 
   # Register tasks made available through the Gruntfile.
-  grunt.registerTask 'build',   ['newer:sass', 'newer:imagemin', 'newer:copy']
+  if isProduction
+    grunt.registerTask 'build',   ['sass', 'imagemin', 'copy']
+  else
+    grunt.registerTask 'build',   ['newer:sass', 'newer:imagemin', 'newer:copy']
   grunt.registerTask 'dist',    ['build', 'compress']
   grunt.registerTask 'default', ['build', 'watch']
