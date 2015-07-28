@@ -26,6 +26,10 @@ module.exports = (grunt) ->
 
     # Optimisation of image assets.
     imagemin:
+      options:
+        optimizationLevel: if isProduction then 7 else 0
+        progressive: isProduction
+        interlaced: isProduction
       assets:
         files: [{
           expand: true,
