@@ -66,13 +66,6 @@ All `.liquid` files in `/templates` are copied directly into `/theme/templates` 
 Customer templates in `/templates/customers` are copied to `/theme/templates/customers`.
 
 
-## Choosing a CSS Preprocessor
-As you can see, this scaffold comes with both a `less` and `scss` directory, allowing you to use either LESS or SASS as a CSS preprocessor.
-By default, the Grunt task is set up to run the SASS task.
-
-If you'd like to use LESS instead, simply change the `build` task inside `Gruntfile.coffee` to run `newer:less` instead of `newer:sass`.
-
-
 ## Contributions
 
 Contributions are very much welcome! Just open a pull request, or raise an issue to discuss a proposed change.

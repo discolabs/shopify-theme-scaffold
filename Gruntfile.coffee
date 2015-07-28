@@ -12,14 +12,6 @@ module.exports = (grunt) ->
         '// author: <%= pkg.author %>\n' +
         '// license: <%= pkg.licenses[0].type %>\n'
 
-    # Compilation of LESS files to compressed .css.liquid files.
-    less:
-      theme:
-        options:
-          compress: true
-        files:
-          'theme/assets/styles.min.css.liquid': 'less/styles.less'
-
     # Compilation of SCSS files to compressed .css.liquid files.
     sass:
       theme:
