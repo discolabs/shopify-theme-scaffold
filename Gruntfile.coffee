@@ -26,7 +26,7 @@ module.exports = (grunt) ->
           sourcemap: not IS_PRODUCTION
       theme:
         files:
-          'theme/assets/styles.css.liquid': 'scss/styles.scss'
+          '.theme/assets/styles.css.liquid': 'theme/assets/scss/styles.scss'
 
     # Concatenation and minification of Javascript.
     uglify:
@@ -37,7 +37,7 @@ module.exports = (grunt) ->
         sourceMap: not IS_PRODUCTION
       js:
         files:
-          'theme/assets/script.js.liquid': ['js/script-1.js', 'js/script-2.js']
+          '.theme/assets/script.js.liquid': ['theme/assets/js/script-1.js', 'theme/assets/js/script-2.js']
 
     # Optimisation of image assets.
     imagemin:
@@ -49,44 +49,44 @@ module.exports = (grunt) ->
         files: [{
           expand: true,
           flatten: true,
-          cwd: 'assets',
+          cwd: 'theme/assets',
           src: [IMAGE_ASSET_PATTERN],
-          dest: 'theme/assets'
+          dest: '.theme/assets'
         }]
 
     # Copying of various theme files.
     copy:
       layout:
         expand: true
-        cwd: 'layout'
+        cwd: 'theme/layout'
         src: '*.liquid'
-        dest: 'theme/layout'
+        dest: '.theme/layout'
       templates:
         expand: true
-        cwd: 'templates'
+        cwd: 'theme/templates'
         src: '**/**.liquid'
-        dest: 'theme/templates'
+        dest: '.theme/templates'
       settings:
         expand: true
-        cwd: 'settings'
+        cwd: 'theme/settings'
         src: 'settings_schema.json'
-        dest: 'theme/config'
+        dest: '.theme/config'
       snippets:
         expand: true
-        cwd: 'snippets'
+        cwd: 'theme/snippets'
         src: '*.liquid'
-        dest: 'theme/snippets'
+        dest: '.theme/snippets'
       locales:
         expand: true
-        cwd: 'locales'
+        cwd: 'theme/locales'
         src: '*.json'
-        dest: 'theme/locales'
+        dest: '.theme/locales'
       assets:
         expand: true
         flatten: true
-        cwd: 'assets'
+        cwd: 'theme/assets'
         src: [OTHER_ASSET_PATTERN]
-        dest: 'theme/assets'
+        dest: '.theme/assets'
 
     # Compression to a .zip for direct upload to Shopify Admin.
     compress:
@@ -95,7 +95,7 @@ module.exports = (grunt) ->
           archive: 'dist/your-theme-name.zip'
         files: [
           expand: true
-          cwd: 'theme'
+          cwd: '.theme'
           src: [
             'assets/**',
             'config/**',
@@ -107,24 +107,24 @@ module.exports = (grunt) ->
         ]
 
     # Clean up generated files.
-    clean: ['dist', 'theme/assets', 'theme/config', 'theme/layout', 'theme/locales', 'theme/snippets', 'theme/templates']
+    clean: ['dist', '.theme/assets', '.theme/config', '.theme/layout', '.theme/locales', '.theme/snippets', '.theme/templates']
 
     # Watch task.
     watch:
       sass:
-        files: ['scss/**/*.scss']
+        files: ['theme/assets/scss/**/*.scss']
         tasks: ['newer:sass']
       uglify:
-        files: ['js/**/*.js']
+        files: ['theme/assets/js/**/*.js']
         tasks: ['newer:uglify']
       copy:
         files: [
-          'layout/*.liquid',
-          'locales/*.json',
-          'settings/settings_schema.json',
-          'snippets/*.liquid',
-          'templates/**/*.liquid',
-          'assets/' + OTHER_ASSET_PATTERN
+          'theme/layout/*.liquid',
+          'theme/locales/*.json',
+          'theme/settings/settings_schema.json',
+          'theme/snippets/*.liquid',
+          'theme/templates/**/*.liquid',
+          'theme/assets/' + OTHER_ASSET_PATTERN
         ]
         tasks: ['newer:copy']
 
