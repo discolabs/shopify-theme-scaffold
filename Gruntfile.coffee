@@ -1,7 +1,11 @@
 module.exports = (grunt) ->
 
-  grunt.config 'env', grunt.option('env') || process.env.GRUNT_ENV || 'development'
-  isProduction = (grunt.config('env') == 'production')
+  # Flags from command line options.
+  IS_PRODUCTION = (grunt.option('env') == 'production')
+
+  # Define patterns used to match image-based assets (for ImageMin) and other types of asset.
+  IMAGE_ASSET_PATTERN = '**/*.{png,jpg,jpeg,gif,svg}'
+  OTHER_ASSET_PATTERN = '**/*.{css,js,scss,css.liquid,js.liquid,scss.liquid,eot,ttf,woff}'
 
   # Initialise the Grunt config.
   grunt.initConfig
@@ -19,23 +23,23 @@ module.exports = (grunt) ->
     sass:
       theme:
         options:
-          style: if isProduction then 'compressed' else 'expanded'
-          sourcemap: not isProduction
+          style: if IS_PRODUCTION then 'compressed' else 'expanded'
+          sourcemap: not IS_PRODUCTION
         files:
           'theme/assets/styles.css.liquid': 'scss/styles.scss'
 
     # Optimisation of image assets.
     imagemin:
       options:
-        optimizationLevel: if isProduction then 7 else 0
-        progressive: isProduction
-        interlaced: isProduction
+        optimizationLevel: if IS_PRODUCTION then 7 else 0
+        progressive: IS_PRODUCTION
+        interlaced: IS_PRODUCTION
       assets:
         files: [{
           expand: true,
           flatten: true,
           cwd: 'assets',
-          src: ['**/*.{png,jpg,jpeg,gif,svg}'],
+          src: [IMAGE_ASSET_PATTERN],
           dest: 'theme/assets'
         }]
 
@@ -70,7 +74,7 @@ module.exports = (grunt) ->
         expand: true
         flatten: true
         cwd: 'assets'
-        src: ['**/*.{css,js,scss,css.liquid,js.liquid,scss.liquid,eot,ttf,woff}']
+        src: [OTHER_ASSET_PATTERN]
         dest: 'theme/assets'
 
     # Compression to a .zip for direct upload to Shopify Admin.
@@ -96,27 +100,22 @@ module.exports = (grunt) ->
 
     # Watch task.
     watch:
-      less:
-        files: ['less/**/*.less']
-        tasks: ['less']
-      settings:
-        files: ['settings/settings_schema.json']
-        tasks: ['copy:settings']
-      snippets:
-        files: ['snippets/**/**.liquid']
-        tasks: ['copy:snippets']
-      layout:
-        files: ['layout/*.liquid']
-        tasks: ['copy:layout']
-      templates:
-        files: ['templates/*.liquid']
-        tasks: ['copy:templates']
-      locales:
-        files: ['locales/*.json']
-        tasks: ['copy:locales']
+      sass:
+        files: ['scss/**/*.scss']
+        tasks: ['newer:sass']
+      copy:
+        files: [
+          'layout/*.liquid',
+          'locales/*.json',
+          'settings/settings_schema.json',
+          'snippets/*.liquid',
+          'templates/**/*.liquid',
+          'assets/' + OTHER_ASSET_PATTERN
+        ]
+        tasks: ['newer:copy']
 
   # Production-specific configuration.
-  if isProduction
+  if IS_PRODUCTION
     grunt.config 'newer'
       options:
         override: (detail, include) ->
