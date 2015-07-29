@@ -35,7 +35,7 @@ module.exports = (grunt) ->
         mangle: IS_PRODUCTION
         beautify: not IS_PRODUCTION
         sourceMap: not IS_PRODUCTION
-      js:
+      theme:
         files:
           '.build/assets/script.js.liquid': ['theme/assets/js/script-*.js']
 
