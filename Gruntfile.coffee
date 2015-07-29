@@ -21,12 +21,23 @@ module.exports = (grunt) ->
 
     # Compilation of SCSS files to compressed .css.liquid files.
     sass:
-      theme:
-        options:
+      options:
           style: if IS_PRODUCTION then 'compressed' else 'expanded'
           sourcemap: not IS_PRODUCTION
+      theme:
         files:
           'theme/assets/styles.css.liquid': 'scss/styles.scss'
+
+    # Concatenation and minification of Javascript.
+    uglify:
+      options:
+        compress: IS_PRODUCTION
+        mangle: IS_PRODUCTION
+        beautify: not IS_PRODUCTION
+        sourceMap: not IS_PRODUCTION
+      js:
+        files:
+          'theme/assets/script.js.liquid': ['js/script-1.js', 'js/script-2.js']
 
     # Optimisation of image assets.
     imagemin:
@@ -103,6 +114,9 @@ module.exports = (grunt) ->
       sass:
         files: ['scss/**/*.scss']
         tasks: ['newer:sass']
+      uglify:
+        files: ['js/**/*.js']
+        tasks: ['newer:uglify']
       copy:
         files: [
           'layout/*.liquid',
@@ -134,6 +148,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-newer'
 
   # Register tasks made available through the Gruntfile.
-  grunt.registerTask 'build',   ['newer:sass', 'newer:imagemin', 'newer:copy']
+  grunt.registerTask 'build',   ['newer:sass', 'newer:uglify', 'newer:imagemin', 'newer:copy']
   grunt.registerTask 'dist',    ['build', 'compress']
   grunt.registerTask 'default', ['build', 'watch']
