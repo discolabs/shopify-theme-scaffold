@@ -37,7 +37,7 @@ module.exports = (grunt) ->
         sourceMap: not IS_PRODUCTION
       js:
         files:
-          '.theme/assets/script.js.liquid': ['theme/assets/js/script-1.js', 'theme/assets/js/script-2.js']
+          '.theme/assets/script.js.liquid': ['theme/assets/js/script-*.js']
 
     # Optimisation of image assets.
     imagemin:
