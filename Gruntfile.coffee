@@ -5,7 +5,7 @@ module.exports = (grunt) ->
 
   # Define patterns used to match image-based assets (for ImageMin) and other types of asset.
   IMAGE_ASSET_PATTERN = '**/*.{png,jpg,jpeg,gif,svg}'
-  OTHER_ASSET_PATTERN = '**/*.{css,js,scss,css.liquid,js.liquid,scss.liquid,eot,ttf,woff}'
+  STATIC_ASSETS_PATTERN = '**/*.{css,js,scss,css.liquid,js.liquid,scss.liquid,eot,ttf,woff}'
 
   # Initialise the Grunt config.
   grunt.initConfig
@@ -49,7 +49,7 @@ module.exports = (grunt) ->
         files: [{
           expand: true,
           flatten: true,
-          cwd: 'theme/assets',
+          cwd: 'theme/assets/static',
           src: [IMAGE_ASSET_PATTERN],
           dest: '.theme/assets'
         }]
@@ -84,8 +84,8 @@ module.exports = (grunt) ->
       assets:
         expand: true
         flatten: true
-        cwd: 'theme/assets'
-        src: [OTHER_ASSET_PATTERN]
+        cwd: 'theme/assets/static'
+        src: [STATIC_ASSETS_PATTERN]
         dest: '.theme/assets'
 
     # Compression to a .zip for direct upload to Shopify Admin.
@@ -117,6 +117,9 @@ module.exports = (grunt) ->
       uglify:
         files: ['theme/assets/js/**/*.js']
         tasks: ['newer:uglify']
+      imagemin:
+        files: ['theme/assets/static/' + IMAGE_ASSET_PATTERN]
+        tasks: ['newer:imagemin']
       copy:
         files: [
           'theme/layout/*.liquid',
@@ -124,7 +127,7 @@ module.exports = (grunt) ->
           'theme/settings/settings_schema.json',
           'theme/snippets/*.liquid',
           'theme/templates/**/*.liquid',
-          'theme/assets/' + OTHER_ASSET_PATTERN
+          'theme/assets/static/' + STATIC_ASSETS_PATTERN
         ]
         tasks: ['newer:copy']
 
