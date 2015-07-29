@@ -26,7 +26,7 @@ module.exports = (grunt) ->
           sourcemap: not IS_PRODUCTION
       theme:
         files:
-          '.theme/assets/styles.css.liquid': 'theme/assets/scss/styles.scss'
+          '.build/assets/styles.css.liquid': 'theme/assets/scss/styles.scss'
 
     # Concatenation and minification of Javascript.
     uglify:
@@ -37,7 +37,7 @@ module.exports = (grunt) ->
         sourceMap: not IS_PRODUCTION
       js:
         files:
-          '.theme/assets/script.js.liquid': ['theme/assets/js/script-*.js']
+          '.build/assets/script.js.liquid': ['theme/assets/js/script-*.js']
 
     # Optimisation of image assets.
     imagemin:
@@ -51,7 +51,7 @@ module.exports = (grunt) ->
           flatten: true,
           cwd: 'theme/assets/static',
           src: [IMAGE_ASSET_PATTERN],
-          dest: '.theme/assets'
+          dest: '.build/assets'
         }]
 
     # Copying of various theme files.
@@ -60,33 +60,33 @@ module.exports = (grunt) ->
         expand: true
         cwd: 'theme/layout'
         src: '*.liquid'
-        dest: '.theme/layout'
+        dest: '.build/layout'
       templates:
         expand: true
         cwd: 'theme/templates'
         src: '**/**.liquid'
-        dest: '.theme/templates'
+        dest: '.build/templates'
       settings:
         expand: true
         cwd: 'theme/settings'
         src: 'settings_schema.json'
-        dest: '.theme/config'
+        dest: '.build/config'
       snippets:
         expand: true
         cwd: 'theme/snippets'
         src: '*.liquid'
-        dest: '.theme/snippets'
+        dest: '.build/snippets'
       locales:
         expand: true
         cwd: 'theme/locales'
         src: '*.json'
-        dest: '.theme/locales'
+        dest: '.build/locales'
       assets:
         expand: true
         flatten: true
         cwd: 'theme/assets/static'
         src: [STATIC_ASSETS_PATTERN]
-        dest: '.theme/assets'
+        dest: '.build/assets'
 
     # Compression to a .zip for direct upload to Shopify Admin.
     compress:
@@ -95,7 +95,7 @@ module.exports = (grunt) ->
           archive: 'dist/your-theme-name.zip'
         files: [
           expand: true
-          cwd: '.theme'
+          cwd: '.build'
           src: [
             'assets/**',
             'config/**',
@@ -107,7 +107,7 @@ module.exports = (grunt) ->
         ]
 
     # Clean up generated files.
-    clean: ['dist', '.theme/assets', '.theme/config', '.theme/layout', '.theme/locales', '.theme/snippets', '.theme/templates']
+    clean: ['dist', '.build/assets', '.build/config', '.build/layout', '.build/locales', '.build/snippets', '.build/templates']
 
     # Watch task.
     watch:
