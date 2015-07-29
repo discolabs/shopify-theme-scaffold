@@ -37,15 +37,15 @@ from the base directory, which should do the rest.
 
 
 ## Development Builds
-Running `grunt build` will compile all of your files into the `/.build`
+Running `grunt build` will compile all of your files into the `.build`
 directory in the directory structure expected by Shopify. You can run
 `grunt dist` to additionally generate a `.zip` file, packaging these files up
 for direct upload through the Shopify Admin interface.
 
 If you're familiar with the `shopify_theme` gem, just add your theme
-configuration details to a `config.yml` file in the `/.build` directory, then
+configuration details to a `config.yml` file in the `.build` directory, then
 run `theme watch` in that directory. Subsequent builds of your theme that alter
-files in the `/theme` directory will have their changes automatically uploaded
+files in the `theme` directory will have their changes automatically uploaded
 to Shopify.
 
 Instead of running `grunt build` every time you want to rebuild your theme, you
