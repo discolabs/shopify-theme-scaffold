@@ -71,6 +71,11 @@ module.exports = (grunt) ->
         cwd: 'theme/settings'
         src: 'settings_schema.json'
         dest: '.build/config'
+      sections:
+        expand: true
+        cwd: 'theme/sections'
+        src: '*.liquid'
+        dest: '.build/sections'
       snippets:
         expand: true
         cwd: 'theme/snippets'
@@ -101,13 +106,14 @@ module.exports = (grunt) ->
             'config/**',
             'layout/**',
             'locales/**',
+            'sections/**',
             'snippets/**',
             'templates/**'
           ]
         ]
 
     # Clean up generated files.
-    clean: ['dist', '.build/assets', '.build/config', '.build/layout', '.build/locales', '.build/snippets', '.build/templates']
+    clean: ['dist', '.build/assets', '.build/config', '.build/layout', '.build/locales', '.build/sections', '.build/snippets', '.build/templates']
 
     # Watch task.
     watch:
@@ -125,6 +131,7 @@ module.exports = (grunt) ->
           'theme/layout/*.liquid',
           'theme/locales/*.json',
           'theme/settings/settings_schema.json',
+          'theme/sections/*.liquid',
           'theme/snippets/*.liquid',
           'theme/templates/**/*.liquid',
           'theme/assets/static/' + STATIC_ASSETS_PATTERN
