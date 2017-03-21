@@ -141,7 +141,7 @@ module.exports = (grunt) ->
   # Production-specific configuration.
   if IS_PRODUCTION
     grunt.config 'newer'
-      options:
+    options:
         override: (detail, include) ->
           include(true)
 
